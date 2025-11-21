@@ -1,1 +1,232 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card {
+      width: 400px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    h2 {
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      color: #eee;
+      margin-bottom: 20px;
+    }
+
+    .input-group {
+      text-align: left;
+      margin-bottom: 15px;
+    }
+
+    label {
+      color: #fff;
+      font-weight: 500;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input::placeholder {
+      color: #ddd;
+    }
+
+    .error-border {
+      border-color: #ff4d4d !important;
+    }
+
+    .success-border {
+      border-color: #4dff4d !important;
+    }
+
+    small.error {
+      color: #ffb3b3;
+      min-height: 18px;
+      display: block;
+      font-size: 13px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      background: #fff;
+      color: #2575fc;
+      border: none;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: #e6e6e6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      margin-top: 10px;
+      color: white;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card">
+  <h2>Registration Form with Validation</h2>
+  <p class="subtitle">Please fill out the form to register</p>
+
+  <form id="regForm">
+
+    <div class="input-group">
+      <label>Full Name</label>
+      <input type="text" id="name" placeholder="Enter your full name">
+      <small class="error"></small>
+    </div>
+
+    <div class="input-group">
+      <label>Email</label>
+      <input type="email" id="email" placeholder="example@gmail.com">
+      <small class="error"></small>
+    </div>
+
+    <div class="input-group">
+      <label>Phone Number</label>
+      <input type="text" id="phone" placeholder="09XXXXXXXXX">
+      <small class="error"></small>
+    </div>
+
+    <div class="input-group">
+      <label>Password</label>
+      <input type="password" id="password" placeholder="Enter password">
+      <small class="error"></small>
+    </div>
+
+    <div class="input-group">
+      <label>Confirm Password</label>
+      <input type="password" id="confirmPassword" placeholder="Repeat password">
+      <small class="error"></small>
+    </div>
+
+    <button class="btn" type="submit">Register</button>
+
+  </form>
+</div>
+
+<footer>
+  <p>© 2025 , Cuesta, Glyndel boy M. • Olano, Hanze E.— All rights reserved.</p>
+</footer>
+
+<script>
+$(document).ready(function(){
+
+  function validateField(input, message) {
+    let value = input.val().trim();
+    let error = input.next(".error");
+
+    if (value === "") {
+      input.addClass("error-border").removeClass("success-border");
+      error.text(message);
+      return false;
+    } else {
+      input.addClass("success-border").removeClass("error-border");
+      error.text("");
+      return true;
+    }
+  }
+
+  $("#name").on("keyup blur", function(){
+    validateField($("#name"), "Full Name is required.");
+  });
+
+  $("#email").on("keyup blur", function(){
+    validateField($("#email"), "Email is required.");
+  });
+
+  $("#phone").on("keyup blur", function(){
+    validateField($("#phone"), "Phone Number is required.");
+  });
+
+  $("#password").on("keyup blur", function(){
+    validateField($("#password"), "Password is required.");
+  });
+
+  $("#confirmPassword").on("keyup blur", function(){
+    let pass = $("#password").val();
+    let confirm = $("#confirmPassword").val();
+    let error = $("#confirmPassword").next(".error");
+
+    if (confirm === "") {
+      $("#confirmPassword").addClass("error-border");
+      error.text("Please confirm password.");
+    } 
+    else if (pass !== confirm) {
+      $("#confirmPassword").addClass("error-border");
+      error.text("Passwords do not match.");
+    } 
+    else {
+      $("#confirmPassword").addClass("success-border").removeClass("error-border");
+      error.text("");
+    }
+  });
+
+  $("#regForm").submit(function(e){
+    e.preventDefault();
+    alert("Registration Successful!");
+  });
+
+});
+</script>
+
+</body>
+</html>
