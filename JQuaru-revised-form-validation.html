@@ -3,238 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JQuery Revised Form Validation</title>
+  <title>Registration Form</title>
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
   <!-- jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-  <style>
-    *{
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
-
-    body{
-      background: linear-gradient(135deg, #6a11cb, #2575fc);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .wrapper{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex: 1;
-      padding: 20px;
-    }
-
-    .card{
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
-      width: 400px;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-      animation: fadeIn 0.8s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    h2{
-      text-align: center;
-      color: #fff;
-      margin-bottom: 20px;
-      font-weight: 600;
-    }
-
-    .input-group{
-      margin-bottom: 15px;
-    }
-
-    label{
-      color: #fff;
-      font-weight: 500;
-    }
-
-    input{
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 8px;
-      border: 2px solid rgba(255,255,255,0.5);
-      background: rgba(255,255,255,0.15);
-      color: #fff;
-      font-size: 15px;
-      outline: none;
-      transition: 0.3s;
-    }
-
-    input:focus{
-      border-color: #00ffcc;
-    }
-
-    .error-border {
-      border-color: #ff4d4d !important;
-    }
-
-    .success-border {
-      border-color: #4dff4d !important;
-    }
-
-    small{
-      color: #ffb3b3;
-      min-height: 18px;
-      display: block;
-      font-size: 13px;
-    }
-
-    .btn{
-      width: 100%;
-      padding: 12px;
-      border: none;
-      background: #ffffff;
-      color: #2575fc;
-      font-size: 17px;
-      font-weight: bold;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: .2s;
-      margin-top: 10px;
-    }
-
-    .btn:hover{
-      background: #e8e8e8;
-    }
-
-    footer{
-      text-align: center;
-      padding: 10px;
-      color: white;
-      font-size: 14px;
-    }
-  </style>
-
 </head>
 <body>
 
-<div class="wrapper">
-  <div class="card">
-    <h2>JQuery Revised Form Validation</h2>
+<div class="card">
+  <h2>Registration Form with Validation</h2>
+  <p class="subtitle">Please fill out the form to register</p>
 
-    <form id="regForm">
+  <form id="regForm">
 
-      <div class="input-group">
-        <label>Full Name</label>
-        <input type="text" id="name">
-        <small></small>
-      </div>
+    <div class="input-group">
+      <label>Full Name</label>
+      <input type="text" id="name" placeholder="Enter your full name">
+      <small class="error"></small>
+    </div>
 
-      <div class="input-group">
-        <label>Email</label>
-        <input type="email" id="email">
-        <small></small>
-      </div>
+    <div class="input-group">
+      <label>Email</label>
+      <input type="email" id="email" placeholder="example@gmail.com">
+      <small class="error"></small>
+    </div>
 
-      <div class="input-group">
-        <label>Phone Number</label>
-        <input type="text" id="phone">
-        <small></small>
-      </div>
+    <div class="input-group">
+      <label>Phone Number</label>
+      <input type="text" id="phone" placeholder="09XXXXXXXXX">
+      <small class="error"></small>
+    </div>
 
-      <div class="input-group">
-        <label>Password</label>
-        <input type="password" id="password">
-        <small></small>
-      </div>
+    <div class="input-group">
+      <label>Password</label>
+      <input type="password" id="password" placeholder="Enter password">
+      <small class="error"></small>
+    </div>
 
-      <div class="input-group">
-        <label>Confirm Password</label>
-        <input type="password" id="confirmPassword">
-        <small></small>
-      </div>
+    <div class="input-group">
+      <label>Confirm Password</label>
+      <input type="password" id="confirmPassword" placeholder="Repeat password">
+      <small class="error"></small>
+    </div>
 
-      <button type="submit" class="btn">Register</button>
+    <button class="btn" type="submit">Register</button>
 
-    </form>
-  </div>
+  </form>
 </div>
 
 <footer>
-  <p>© 2025 , Cuesta, Glyndel boy M. • Olano, Hanze E — All rights reserved.</p>
+  <p>© 2025 , Cuesta, Glyndel boy M. • Olano, Hanze E.— All rights reserved.</p>
 </footer>
 
-<script>
-$(document).ready(function(){
-
-  // Reusable function
-  function validateField(input, message){
-    let value = input.val().trim();
-    let small = input.next("small");
-
-    if(value === ""){
-      input.removeClass("success-border").addClass("error-border");
-      small.text(message);
-      return false;
-    } else {
-      input.removeClass("error-border").addClass("success-border");
-      small.text("");
-      return true;
-    }
-  }
-
-  // Keyup + Blur
-  $("#name").on("keyup blur", function(){
-    validateField($("#name"), "Name is required.");
-  });
-
-  $("#email").on("keyup blur", function(){
-    validateField($("#email"), "Email is required.");
-  });
-
-  $("#phone").on("keyup blur", function(){
-    validateField($("#phone"), "Phone number is required.");
-  });
-
-  $("#password").on("keyup blur", function(){
-    validateField($("#password"), "Password cannot be empty.");
-  });
-
-  $("#confirmPassword").on("keyup blur", function(){
-    let pass = $("#password").val();
-    let confirm = $("#confirmPassword").val();
-    let small = $("#confirmPassword").next("small");
-
-    if(confirm === ""){
-      $("#confirmPassword").addClass("error-border");
-      small.text("Please confirm password.");
-    }
-    else if(pass !== confirm){
-      $("#confirmPassword").addClass("error-border");
-      small.text("Passwords do not match.");
-    }
-    else{
-      $("#confirmPassword").removeClass("error-border").addClass("success-border");
-      small.text("");
-    }
-  });
-
-  // On Submit
-  $("#regForm").submit(function(e){
-    e.preventDefault();
-    alert("Form Submitted Successfully!");
-  });
-
-});
-</script>
+<!-- JS -->
+<script src="script.js"></script>
 
 </body>
 </html>
