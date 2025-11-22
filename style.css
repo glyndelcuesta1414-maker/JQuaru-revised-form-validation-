@@ -1,3 +1,4 @@
+/* GENERAL STYLE */
 * {
   margin: 0;
   padding: 0;
@@ -6,99 +7,115 @@
 }
 
 body {
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  background: linear-gradient(135deg, #5a73fc, #3ac4ff);
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
+/* CARD */
 .card {
-  width: 400px;
-  margin: auto;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(12px);
-  padding: 25px;
+  background: #fff;
+  width: 100%;
+  max-width: 450px;
+  padding: 30px;
   border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.5s ease;
 }
 
-h2 {
-  color: #fff;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card h2 {
+  text-align: center;
   font-weight: 600;
   margin-bottom: 5px;
 }
 
 .subtitle {
-  color: #eee;
+  text-align: center;
   margin-bottom: 20px;
+  font-size: 14px;
+  color: #666;
 }
 
+/* INPUT GROUP */
 .input-group {
-  text-align: left;
   margin-bottom: 15px;
 }
 
-label {
-  color: #fff;
+.input-group label {
+  font-size: 14px;
   font-weight: 500;
 }
 
-input {
+.input-group input,
+.input-group select {
   width: 100%;
   padding: 10px;
-  margin-top: 5px;
+  margin-top: 4px;
+  border: 2px solid #ccc;
   border-radius: 8px;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.15);
-  color: #fff;
-  font-size: 15px;
-  outline: none;
+  font-size: 14px;
   transition: 0.3s;
 }
 
-input::placeholder {
-  color: #ddd;
+/* FOCUS EFFECT */
+.input-group input:focus,
+.input-group select:focus {
+  border-color: #5a73fc;
+  outline: none;
+  box-shadow: 0 0 5px rgba(90, 115, 252, 0.3);
 }
 
-.error-border {
-  border-color: #ff4d4d !important;
-}
-
-.success-border {
-  border-color: #4dff4d !important;
-}
-
+/* ERROR MESSAGE */
 small.error {
-  color: #ffb3b3;
-  min-height: 18px;
+  color: red;
+  font-size: 12px;
+  margin-top: 3px;
   display: block;
-  font-size: 13px;
 }
 
+/* INPUT ERROR STYLE */
+.input-group.invalid input,
+.input-group.invalid select {
+  border-color: red;
+}
+
+/* INPUT SUCCESS STYLE */
+.input-group.valid input,
+.input-group.valid select {
+  border-color: green;
+}
+
+/* BUTTON */
 .btn {
   width: 100%;
   padding: 12px;
-  margin-top: 10px;
-  background: #fff;
-  color: #2575fc;
+  background: #5a73fc;
+  color: white;
   border: none;
   border-radius: 10px;
-  font-size: 17px;
-  font-weight: bold;
+  font-size: 16px;
+  margin-top: 10px;
   cursor: pointer;
-  transition: 0.2s;
+  font-weight: 600;
+  transition: 0.3s;
 }
 
 .btn:hover {
-  background: #e6e6e6;
+  background: #445df5;
 }
 
+/* FOOTER */
 footer {
   text-align: center;
-  padding: 10px;
-  margin-top: 10px;
-  color: white;
-  font-size: 14px;
+  margin-top: 15px;
+  font-size: 12px;
+  color: #fff;
 }
